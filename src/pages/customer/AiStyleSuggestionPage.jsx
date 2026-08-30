@@ -77,8 +77,9 @@ export default function AiStyleSuggestionPage() {
       setResult(data);
       toast.success(`Face shape detected: ${data.face_shape?.toUpperCase()} ⚡`);
     } catch (err) {
-      toast.error('Could not reach the AI server. Make sure it is running on port 8000.');
-      console.error(err);
+      const AI_API_URL = import.meta.env.VITE_AI_API_URL || 'http://localhost:8000';
+      toast.error(`AI Server error (${AI_API_URL}): ${err.message || 'Could not connect'}`);
+      console.error('AI fetch error:', err);
     } finally {
       setIsAnalyzing(false);
     }
