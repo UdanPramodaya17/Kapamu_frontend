@@ -54,7 +54,8 @@ export default function AiStyleSuggestionPage() {
       const apiGender = gender === 'male' ? 'men' : 'women';
       formData.append('gender', apiGender);
 
-      const response = await fetch('http://localhost:8000/predict', {
+      const AI_API_URL = import.meta.env.VITE_AI_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${AI_API_URL}/predict`, {
         method: 'POST',
         body: formData,
       });
