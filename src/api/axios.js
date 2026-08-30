@@ -2,8 +2,14 @@ import axios from 'axios';
 import { store } from '../app/store';
 import { updateToken, logout } from '../features/auth/authSlice';
 
+// Local dev: uses Vite proxy (/api → localhost:5000)
+// Production (Vercel): uses VITE_API_URL env variable → Render URL
+const BASE_URL = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : '/api';
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: BASE_URL,
   timeout: 15000,
   headers: { 'Content-Type': 'application/json' },
 });
@@ -56,7 +62,7 @@ api.interceptors.response.use(
       }
 
       try {
-        const response = await axios.post('/api/auth/refresh', { refreshToken });
+        const response = await axios.post(`${BASE_URL}/auth/refresh`, { refreshToken });
         const { accessToken, refreshToken: newRefresh } = response.data.data;
 
         store.dispatch(updateToken({ accessToken, refreshToken: newRefresh }));
