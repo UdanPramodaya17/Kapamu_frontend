@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import api from '../../api/axios';
 import Navbar from '../../components/layout/Navbar';
 import { 
   UploadCloud, AlertCircle, ScanFace, Scissors
@@ -54,13 +55,11 @@ export default function AiStyleSuggestionPage() {
       const apiGender = gender === 'male' ? 'men' : 'women';
       formData.append('gender', apiGender);
 
-      const AI_API_URL = import.meta.env.VITE_AI_API_URL || 'http://localhost:8000';
-      const response = await fetch(`${AI_API_URL}/predict`, {
-        method: 'POST',
-        body: formData,
+      const res = await api.post('/ai/predict', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
 
-      const data = await response.json();
+      const data = res.data;
 
       if (data.error) {
         toast.error(data.message || 'Analysis failed. Please try a clearer photo.');
@@ -77,8 +76,7 @@ export default function AiStyleSuggestionPage() {
       setResult(data);
       toast.success(`Face shape detected: ${data.face_shape?.toUpperCase()} ⚡`);
     } catch (err) {
-      const AI_API_URL = import.meta.env.VITE_AI_API_URL || 'http://localhost:8000';
-      toast.error(`AI Server error (${AI_API_URL}): ${err.message || 'Could not connect'}`);
+      toast.error(err.response?.data?.message || err.message || 'AI Analysis failed');
       console.error('AI fetch error:', err);
     } finally {
       setIsAnalyzing(false);
