@@ -519,223 +519,210 @@ export default function HomePage() {
       </section>
 
       {/* ─── RECOMMENDED SALONS ─── */}
-      <section style={{ padding: '4rem 0', background: '#fdfdfd', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-          <div className="comic-panel-section" style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '24px', boxShadow: '0 10px 40px rgba(0,0,0,0.02)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem' }}>
-              <div>
-                <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.45)', display: 'block', marginBottom: '0.5rem' }}>Curated Selection</span>
-                <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 900, fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', margin: 0 }}>Recommended Salons</h2>
-              </div>
+      <section style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: '4.5rem 0', background: '#ffffff', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', position: 'relative' }}>
+          
+          {/* Header Row with Title and Navigation buttons */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem' }}>
+            <div>
+              <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', display: 'block', marginBottom: '0.5rem' }}>Curated Selection</span>
+              <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', margin: 0 }}>Recommended Salons</h2>
+            </div>
+
+            {/* Right side controls: View All link + Slider Navigation buttons */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
               <Link to="/saloons" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#000000', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem', borderBottom: '1px solid #000000', paddingBottom: '3px', transition: 'all 0.2s' }}>
                 View All <ArrowRight size={14} />
               </Link>
-            </div>
 
-            {/* Horizontal Scroll Slider with Centered Left/Right Arrows */}
-            <div style={{ position: 'relative' }}>
-              {/* Left Arrow */}
-              <button
-                onClick={() => scrollContainer(recScrollRef, 'left')}
-                aria-label="Scroll left"
-                style={{
-                  position: 'absolute',
-                  left: '-22px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  zIndex: 20,
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '50%',
-                  background: '#ffffff',
-                  border: '1px solid rgba(0,0,0,0.12)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s ease',
-                  color: '#000000',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = '#000000';
-                  e.currentTarget.style.color = '#ffffff';
-                  e.currentTarget.style.boxShadow = '0 10px 28px rgba(0,0,0,0.25)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.color = '#000000';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
-                }}
-              >
-                <ChevronLeft size={22} />
-              </button>
-
-              {/* Right Arrow */}
-              <button
-                onClick={() => scrollContainer(recScrollRef, 'right')}
-                aria-label="Scroll right"
-                style={{
-                  position: 'absolute',
-                  right: '-22px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  zIndex: 20,
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '50%',
-                  background: '#ffffff',
-                  border: '1px solid rgba(0,0,0,0.12)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s ease',
-                  color: '#000000',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = '#000000';
-                  e.currentTarget.style.color = '#ffffff';
-                  e.currentTarget.style.boxShadow = '0 10px 28px rgba(0,0,0,0.25)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.color = '#000000';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
-                }}
-              >
-                <ChevronRight size={22} />
-              </button>
-
-              {/* Scroll Track */}
-              <div
-                ref={recScrollRef}
-                className="hide-scrollbar"
-                style={{
-                  display: 'flex',
-                  gap: '2rem',
-                  overflowX: 'auto',
-                  scrollSnapType: 'x mandatory',
-                  scrollBehavior: 'smooth',
-                  padding: '0.5rem 0.25rem 1.5rem 0.25rem',
-                }}
-              >
-                {displayRec.map((s) => (
-                  <Link 
-                    to={`/saloons/${s._id}`} 
-                    key={s._id} 
-                    className="salon-card"
-                    style={{
-                      flex: '0 0 340px',
-                      minWidth: '320px',
-                      maxWidth: '350px',
-                      scrollSnapAlign: 'start',
-                      display: 'flex',
-                      flexDirection: 'column',
-                    }}
-                  >
-                    {/* Image */}
-                    <div style={{ height: '240px', background: '#f5f5f5', position: 'relative', overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
-                      {s.coverImage ? (
-                        <img 
-                          src={s.coverImage} 
-                          alt={s.name}
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                          }}
-                          className="salon-card-image"
-                        />
-                      ) : (
-                        <div className="comic-dots-bg" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <Scissors size={40} color="rgba(0,0,0,0.2)" />
-                        </div>
-                      )}
-
-                      {/* Rating badge (Top Left) - Comic Yellow */}
-                      {s.rating && (
-                        <div className="comic-badge-rating">
-                          <Star size={11} fill="#d97706" color="#d97706" />
-                          <span>{s.rating}</span>
-                        </div>
-                      )}
-
-                      {/* Scissors Hover Icon (Top Right) */}
-                      <div className="scissors-hover-icon">
-                        <Scissors size={13} color="#000000" />
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div style={{ padding: '1.5rem 1.75rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
-                      <div>
-                        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.625rem' }}>
-                          <h3 style={{
-                            fontFamily: "'Plus Jakarta Sans', sans-serif",
-                            fontWeight: 800,
-                            fontSize: '1.25rem',
-                            color: '#000000',
-                            letterSpacing: '-0.01em',
-                            lineHeight: '1.2',
-                          }}>{s.name}</h3>
-                          <ArrowUpRight size={16} className="salon-card-arrow" color="#000000" style={{ flexShrink: 0, marginTop: '3px' }} />
-                        </div>
-
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', color: 'rgba(0,0,0,0.65)', fontSize: '0.75rem', marginBottom: '1rem', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600 }}>
-                          <MapPin size={11} color="rgba(0,0,0,0.4)" />
-                          <span>{s.address?.city || 'Location unavailable'}</span>
-                          {s.totalReviews && <span style={{ color: 'rgba(0,0,0,0.45)' }}>· {s.totalReviews} reviews</span>}
-                        </div>
-
-                        {s.services?.length > 0 && (
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem', marginBottom: '1.25rem' }}>
-                            {(Array.isArray(s.services) && typeof s.services[0] === 'string'
-                              ? s.services
-                              : s.services?.slice(0, 3).map(serv => serv.name || serv)
-                            )?.slice(0, 3)?.map((serv, idx) => (
-                              <span key={idx} style={{
-                                padding: '0.3rem 0.75rem',
-                                background: 'rgba(0,0,0,0.02)',
-                                border: '1px solid rgba(0,0,0,0.08)',
-                                borderRadius: '50px',
-                                color: '#000000',
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                fontWeight: 800,
-                                fontSize: '0.65rem',
-                                letterSpacing: '0.04em',
-                                textTransform: 'uppercase',
-                              }}>
-                                {serv}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        paddingTop: '1rem',
-                        borderTop: '1px solid rgba(0,0,0,0.06)',
-                      }}>
-                        <span className="salon-card-footer-text" style={{
-                          fontFamily: "'Plus Jakarta Sans', sans-serif",
-                          fontWeight: 800,
-                          fontSize: '0.65rem',
-                          letterSpacing: '0.12em',
-                          textTransform: 'uppercase',
-                          color: '#000000',
-                        }}>View Details</span>
-                        <div className="salon-card-footer-line" />
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button
+                  onClick={() => scrollContainer(recScrollRef, 'left')}
+                  style={{
+                    width: '42px',
+                    height: '42px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(0,0,0,0.1)',
+                    background: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    outline: 'none',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#000000'; e.currentTarget.style.background = '#f9f9f9'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)'; e.currentTarget.style.background = '#ffffff'; }}
+                  aria-label="Previous recommended salons"
+                >
+                  <ChevronLeft size={18} color="#000000" />
+                </button>
+                <button
+                  onClick={() => scrollContainer(recScrollRef, 'right')}
+                  style={{
+                    width: '42px',
+                    height: '42px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(0,0,0,0.1)',
+                    background: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    outline: 'none',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#000000'; e.currentTarget.style.background = '#f9f9f9'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)'; e.currentTarget.style.background = '#ffffff'; }}
+                  aria-label="Next recommended salons"
+                >
+                  <ChevronRight size={18} color="#000000" />
+                </button>
               </div>
             </div>
+          </div>
+
+          {/* Horizontal Scroll Track */}
+          <div
+            ref={recScrollRef}
+            className="hide-scrollbar"
+            style={{
+              display: 'flex',
+              gap: '1.5rem',
+              overflowX: 'auto',
+              scrollSnapType: 'x mandatory',
+              scrollBehavior: 'smooth',
+              padding: '0.25rem 0.25rem 1.5rem',
+              margin: '0 -0.25rem',
+            }}
+          >
+            {displayRec.map((s) => (
+              <Link 
+                to={`/saloons/${s._id}`} 
+                key={s._id} 
+                className="salon-card"
+                style={{
+                  flex: '0 0 340px',
+                  minWidth: '320px',
+                  maxWidth: '350px',
+                  scrollSnapAlign: 'start',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  background: '#ffffff',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(0,0,0,0.08)',
+                  overflow: 'hidden',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.06)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                {/* Image */}
+                <div style={{ height: '220px', background: '#f5f5f5', position: 'relative', overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+                  {s.coverImage ? (
+                    <img 
+                      src={s.coverImage} 
+                      alt={s.name}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                      }}
+                      className="salon-card-image"
+                    />
+                  ) : (
+                    <div className="comic-dots-bg" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Scissors size={40} color="rgba(0,0,0,0.2)" />
+                    </div>
+                  )}
+
+                  {/* Rating badge (Top Left) */}
+                  {s.rating && (
+                    <div className="comic-badge-rating">
+                      <Star size={11} fill="#d97706" color="#d97706" />
+                      <span>{s.rating}</span>
+                    </div>
+                  )}
+
+                  {/* Scissors Hover Icon (Top Right) */}
+                  <div className="scissors-hover-icon">
+                    <Scissors size={13} color="#000000" />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div style={{ padding: '1.5rem 1.75rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.625rem' }}>
+                      <h3 style={{
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        fontWeight: 800,
+                        fontSize: '1.25rem',
+                        color: '#000000',
+                        letterSpacing: '-0.01em',
+                        lineHeight: '1.2',
+                      }}>{s.name}</h3>
+                      <ArrowUpRight size={16} className="salon-card-arrow" color="#000000" style={{ flexShrink: 0, marginTop: '3px' }} />
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', color: 'rgba(0,0,0,0.65)', fontSize: '0.75rem', marginBottom: '1rem', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600 }}>
+                      <MapPin size={11} color="rgba(0,0,0,0.4)" />
+                      <span>{s.address?.city || 'Location unavailable'}</span>
+                      {s.totalReviews && <span style={{ color: 'rgba(0,0,0,0.45)' }}>· {s.totalReviews} reviews</span>}
+                    </div>
+
+                    {s.services?.length > 0 && (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem', marginBottom: '1.25rem' }}>
+                        {(Array.isArray(s.services) && typeof s.services[0] === 'string'
+                          ? s.services
+                          : s.services?.slice(0, 3).map(serv => serv.name || serv)
+                        )?.slice(0, 3)?.map((serv, idx) => (
+                          <span key={idx} style={{
+                            padding: '0.3rem 0.75rem',
+                            background: 'rgba(0,0,0,0.02)',
+                            border: '1px solid rgba(0,0,0,0.08)',
+                            borderRadius: '50px',
+                            color: '#000000',
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                            fontWeight: 800,
+                            fontSize: '0.65rem',
+                            letterSpacing: '0.04em',
+                            textTransform: 'uppercase',
+                          }}>
+                            {serv}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    paddingTop: '1rem',
+                    borderTop: '1px solid rgba(0,0,0,0.06)',
+                  }}>
+                    <span className="salon-card-footer-text" style={{
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      fontWeight: 800,
+                      fontSize: '0.65rem',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color: '#000000',
+                    }}>View Details</span>
+                    <div className="salon-card-footer-line" />
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -1078,223 +1065,210 @@ export default function HomePage() {
       </section>
 
       {/* ─── TRENDING SALONS ─── */}
-      <section style={{ padding: '4rem 0', background: '#fdfdfd', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-          <div className="comic-panel-section" style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '24px', boxShadow: '0 10px 40px rgba(0,0,0,0.02)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem' }}>
-              <div>
-                <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.45)', display: 'block', marginBottom: '0.5rem' }}>Popular Picks</span>
-                <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 900, fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', margin: 0 }}>Trending Salons</h2>
-              </div>
+      <section style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: '4.5rem 0', background: '#ffffff', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', position: 'relative' }}>
+          
+          {/* Header Row with Title and Navigation buttons */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem' }}>
+            <div>
+              <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', display: 'block', marginBottom: '0.5rem' }}>Popular Picks</span>
+              <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', margin: 0 }}>Trending Salons</h2>
+            </div>
+
+            {/* Right side controls: View All link + Slider Navigation buttons */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
               <Link to="/saloons" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#000000', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem', borderBottom: '1px solid #000000', paddingBottom: '3px', transition: 'all 0.2s' }}>
                 View All <ArrowRight size={14} />
               </Link>
-            </div>
 
-            {/* Horizontal Scroll Slider with Centered Left/Right Arrows */}
-            <div style={{ position: 'relative' }}>
-              {/* Left Arrow */}
-              <button
-                onClick={() => scrollContainer(trendScrollRef, 'left')}
-                aria-label="Scroll left"
-                style={{
-                  position: 'absolute',
-                  left: '-22px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  zIndex: 20,
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '50%',
-                  background: '#ffffff',
-                  border: '1px solid rgba(0,0,0,0.12)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s ease',
-                  color: '#000000',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = '#000000';
-                  e.currentTarget.style.color = '#ffffff';
-                  e.currentTarget.style.boxShadow = '0 10px 28px rgba(0,0,0,0.25)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.color = '#000000';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
-                }}
-              >
-                <ChevronLeft size={22} />
-              </button>
-
-              {/* Right Arrow */}
-              <button
-                onClick={() => scrollContainer(trendScrollRef, 'right')}
-                aria-label="Scroll right"
-                style={{
-                  position: 'absolute',
-                  right: '-22px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  zIndex: 20,
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '50%',
-                  background: '#ffffff',
-                  border: '1px solid rgba(0,0,0,0.12)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s ease',
-                  color: '#000000',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = '#000000';
-                  e.currentTarget.style.color = '#ffffff';
-                  e.currentTarget.style.boxShadow = '0 10px 28px rgba(0,0,0,0.25)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.color = '#000000';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
-                }}
-              >
-                <ChevronRight size={22} />
-              </button>
-
-              {/* Scroll Track */}
-              <div
-                ref={trendScrollRef}
-                className="hide-scrollbar"
-                style={{
-                  display: 'flex',
-                  gap: '2rem',
-                  overflowX: 'auto',
-                  scrollSnapType: 'x mandatory',
-                  scrollBehavior: 'smooth',
-                  padding: '0.5rem 0.25rem 1.5rem 0.25rem',
-                }}
-              >
-                {displayTrend.map((s) => (
-                  <Link 
-                    to={`/saloons/${s._id}`} 
-                    key={s._id} 
-                    className="salon-card"
-                    style={{
-                      flex: '0 0 340px',
-                      minWidth: '320px',
-                      maxWidth: '350px',
-                      scrollSnapAlign: 'start',
-                      display: 'flex',
-                      flexDirection: 'column',
-                    }}
-                  >
-                    {/* Image */}
-                    <div style={{ height: '240px', background: '#f5f5f5', position: 'relative', overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
-                      {s.coverImage ? (
-                        <img 
-                          src={s.coverImage} 
-                          alt={s.name}
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                          }}
-                          className="salon-card-image"
-                        />
-                      ) : (
-                        <div className="comic-dots-bg" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <Scissors size={40} color="rgba(0,0,0,0.2)" />
-                        </div>
-                      )}
-
-                      {/* Rating badge (Top Left) - Comic Yellow */}
-                      {s.rating && (
-                        <div className="comic-badge-rating">
-                          <Star size={11} fill="#d97706" color="#d97706" />
-                          <span>{s.rating}</span>
-                        </div>
-                      )}
-
-                      {/* Scissors Hover Icon (Top Right) */}
-                      <div className="scissors-hover-icon">
-                        <Scissors size={13} color="#000000" />
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div style={{ padding: '1.5rem 1.75rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
-                      <div>
-                        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.625rem' }}>
-                          <h3 style={{
-                            fontFamily: "'Plus Jakarta Sans', sans-serif",
-                            fontWeight: 800,
-                            fontSize: '1.25rem',
-                            color: '#000000',
-                            letterSpacing: '-0.01em',
-                            lineHeight: '1.2',
-                          }}>{s.name}</h3>
-                          <ArrowUpRight size={16} className="salon-card-arrow" color="#000000" style={{ flexShrink: 0, marginTop: '3px' }} />
-                        </div>
-
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', color: 'rgba(0,0,0,0.65)', fontSize: '0.75rem', marginBottom: '1rem', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600 }}>
-                          <MapPin size={11} color="rgba(0,0,0,0.4)" />
-                          <span>{s.address?.city || 'Location unavailable'}</span>
-                          {s.totalReviews && <span style={{ color: 'rgba(0,0,0,0.45)' }}>· {s.totalReviews} reviews</span>}
-                        </div>
-
-                        {s.services?.length > 0 && (
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem', marginBottom: '1.25rem' }}>
-                            {(Array.isArray(s.services) && typeof s.services[0] === 'string'
-                              ? s.services
-                              : s.services?.slice(0, 3).map(serv => serv.name || serv)
-                            )?.slice(0, 3)?.map((serv, idx) => (
-                              <span key={idx} style={{
-                                padding: '0.3rem 0.75rem',
-                                background: 'rgba(0,0,0,0.02)',
-                                border: '1px solid rgba(0,0,0,0.08)',
-                                borderRadius: '50px',
-                                color: '#000000',
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                fontWeight: 800,
-                                fontSize: '0.65rem',
-                                letterSpacing: '0.04em',
-                                textTransform: 'uppercase',
-                              }}>
-                                {serv}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        paddingTop: '1rem',
-                        borderTop: '1px solid rgba(0,0,0,0.06)',
-                      }}>
-                        <span className="salon-card-footer-text" style={{
-                          fontFamily: "'Plus Jakarta Sans', sans-serif",
-                          fontWeight: 800,
-                          fontSize: '0.65rem',
-                          letterSpacing: '0.12em',
-                          textTransform: 'uppercase',
-                          color: '#000000',
-                        }}>View Details</span>
-                        <div className="salon-card-footer-line" />
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button
+                  onClick={() => scrollContainer(trendScrollRef, 'left')}
+                  style={{
+                    width: '42px',
+                    height: '42px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(0,0,0,0.1)',
+                    background: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    outline: 'none',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#000000'; e.currentTarget.style.background = '#f9f9f9'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)'; e.currentTarget.style.background = '#ffffff'; }}
+                  aria-label="Previous trending salons"
+                >
+                  <ChevronLeft size={18} color="#000000" />
+                </button>
+                <button
+                  onClick={() => scrollContainer(trendScrollRef, 'right')}
+                  style={{
+                    width: '42px',
+                    height: '42px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(0,0,0,0.1)',
+                    background: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    outline: 'none',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#000000'; e.currentTarget.style.background = '#f9f9f9'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)'; e.currentTarget.style.background = '#ffffff'; }}
+                  aria-label="Next trending salons"
+                >
+                  <ChevronRight size={18} color="#000000" />
+                </button>
               </div>
             </div>
+          </div>
+
+          {/* Horizontal Scroll Track */}
+          <div
+            ref={trendScrollRef}
+            className="hide-scrollbar"
+            style={{
+              display: 'flex',
+              gap: '1.5rem',
+              overflowX: 'auto',
+              scrollSnapType: 'x mandatory',
+              scrollBehavior: 'smooth',
+              padding: '0.25rem 0.25rem 1.5rem',
+              margin: '0 -0.25rem',
+            }}
+          >
+            {displayTrend.map((s) => (
+              <Link 
+                to={`/saloons/${s._id}`} 
+                key={s._id} 
+                className="salon-card"
+                style={{
+                  flex: '0 0 340px',
+                  minWidth: '320px',
+                  maxWidth: '350px',
+                  scrollSnapAlign: 'start',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  background: '#ffffff',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(0,0,0,0.08)',
+                  overflow: 'hidden',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.06)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                {/* Image */}
+                <div style={{ height: '220px', background: '#f5f5f5', position: 'relative', overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+                  {s.coverImage ? (
+                    <img 
+                      src={s.coverImage} 
+                      alt={s.name}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                      }}
+                      className="salon-card-image"
+                    />
+                  ) : (
+                    <div className="comic-dots-bg" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Scissors size={40} color="rgba(0,0,0,0.2)" />
+                    </div>
+                  )}
+
+                  {/* Rating badge (Top Left) */}
+                  {s.rating && (
+                    <div className="comic-badge-rating">
+                      <Star size={11} fill="#d97706" color="#d97706" />
+                      <span>{s.rating}</span>
+                    </div>
+                  )}
+
+                  {/* Scissors Hover Icon (Top Right) */}
+                  <div className="scissors-hover-icon">
+                    <Scissors size={13} color="#000000" />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div style={{ padding: '1.5rem 1.75rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.625rem' }}>
+                      <h3 style={{
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        fontWeight: 800,
+                        fontSize: '1.25rem',
+                        color: '#000000',
+                        letterSpacing: '-0.01em',
+                        lineHeight: '1.2',
+                      }}>{s.name}</h3>
+                      <ArrowUpRight size={16} className="salon-card-arrow" color="#000000" style={{ flexShrink: 0, marginTop: '3px' }} />
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', color: 'rgba(0,0,0,0.65)', fontSize: '0.75rem', marginBottom: '1rem', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600 }}>
+                      <MapPin size={11} color="rgba(0,0,0,0.4)" />
+                      <span>{s.address?.city || 'Location unavailable'}</span>
+                      {s.totalReviews && <span style={{ color: 'rgba(0,0,0,0.45)' }}>· {s.totalReviews} reviews</span>}
+                    </div>
+
+                    {s.services?.length > 0 && (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem', marginBottom: '1.25rem' }}>
+                        {(Array.isArray(s.services) && typeof s.services[0] === 'string'
+                          ? s.services
+                          : s.services?.slice(0, 3).map(serv => serv.name || serv)
+                        )?.slice(0, 3)?.map((serv, idx) => (
+                          <span key={idx} style={{
+                            padding: '0.3rem 0.75rem',
+                            background: 'rgba(0,0,0,0.02)',
+                            border: '1px solid rgba(0,0,0,0.08)',
+                            borderRadius: '50px',
+                            color: '#000000',
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                            fontWeight: 800,
+                            fontSize: '0.65rem',
+                            letterSpacing: '0.04em',
+                            textTransform: 'uppercase',
+                          }}>
+                            {serv}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    paddingTop: '1rem',
+                    borderTop: '1px solid rgba(0,0,0,0.06)',
+                  }}>
+                    <span className="salon-card-footer-text" style={{
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      fontWeight: 800,
+                      fontSize: '0.65rem',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color: '#000000',
+                    }}>View Details</span>
+                    <div className="salon-card-footer-line" />
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
