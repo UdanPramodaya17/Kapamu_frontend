@@ -177,7 +177,7 @@ export default function HomePage() {
         ref={heroRef}
         style={{
           position: 'relative',
-          minHeight: 'calc(100vh - 64px)',
+          minHeight: 'calc(100svh - 64px)',
           marginTop: '64px',
           display: 'flex',
           flexDirection: 'column',
@@ -223,7 +223,7 @@ export default function HomePage() {
           zIndex: 10,
           maxWidth: '1000px',
           width: '100%',
-          padding: '0 2rem',
+          padding: '0 1.25rem',
           textAlign: 'center',
           display: 'flex',
           flexDirection: 'column',
@@ -276,7 +276,7 @@ export default function HomePage() {
             Discover world-wide top-rated salons, book expert barbers in real-time, and shop premium grooming lines in one curated space.
           </p>
 
-          <div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
             <Link
               to="/saloons"
               className="btn-primary"
@@ -284,14 +284,15 @@ export default function HomePage() {
                 background: '#ffffff',
                 color: '#000000',
                 borderColor: '#ffffff',
-                padding: '1.1rem 3rem',
-                fontSize: '0.85rem',
+                padding: '0.9rem 2rem',
+                fontSize: '0.8rem',
                 fontWeight: 700,
-                letterSpacing: '0.2em',
+                letterSpacing: '0.15em',
                 textTransform: 'uppercase',
                 borderRadius: '0',
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                 boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                minWidth: '160px',
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.background = 'transparent';
@@ -367,12 +368,12 @@ export default function HomePage() {
 
       {/* ─── STATS FULL ROW ─── */}
       <section style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 1rem' }}>
           <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-black/10">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="py-8 px-4 md:py-14 md:px-8"
+                className="py-6 px-3 md:py-12 md:px-8"
                 style={{
                   textAlign: 'center',
                   transition: 'background 0.2s',
@@ -384,17 +385,17 @@ export default function HomePage() {
                 <div style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                   fontWeight: 800,
-                  fontSize: 'clamp(2.5rem, 4vw, 3.75rem)',
+                  fontSize: 'clamp(1.75rem, 6vw, 3.75rem)',
                   color: '#000000',
                   lineHeight: 1.1,
                   letterSpacing: '-0.02em',
-                  marginBottom: '0.5rem',
+                  marginBottom: '0.4rem',
                 }}>{stat.value}</div>
                 <div style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                   fontWeight: 700,
-                  fontSize: '0.65rem',
-                  letterSpacing: '0.18em',
+                  fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)',
+                  letterSpacing: '0.12em',
                   textTransform: 'uppercase',
                   color: 'rgba(0,0,0,0.4)',
                 }}>{stat.label}</div>
@@ -405,15 +406,15 @@ export default function HomePage() {
       </section>
 
       {/* ─── FEATURES (Premium Carbon Section) ─── */}
-      <section style={{ padding: '5.5rem 0', background: '#070707', color: '#ffffff', borderTop: '1px solid rgba(255,255,255,0.03)' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5.5rem) 0', background: '#070707', color: '#ffffff', borderTop: '1px solid rgba(255,255,255,0.03)' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 2rem)' }}>
           <div style={{
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'space-between',
-            marginBottom: '4rem',
+            marginBottom: 'clamp(2rem, 5vw, 4rem)',
             flexWrap: 'wrap',
-            gap: '2rem',
+            gap: '1.5rem',
           }}>
             <div>
               <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', display: 'block', marginBottom: '0.75rem' }}>Our Features</span>
@@ -447,7 +448,7 @@ export default function HomePage() {
               <div
                 key={title}
                 style={{
-                  padding: '2.25rem 1.75rem',
+                  padding: 'clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 1.75rem)',
                   background: 'linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.00) 100%)',
                   border: '1px solid rgba(255,255,255,0.06)',
                   borderRadius: '16px',
@@ -455,7 +456,7 @@ export default function HomePage() {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '240px',
+                  minHeight: 'clamp(180px, 30vw, 240px)',
                   cursor: 'pointer',
                 }}
                 onMouseEnter={e => {
@@ -519,23 +520,23 @@ export default function HomePage() {
       </section>
 
       {/* ─── RECOMMENDED SALONS ─── */}
-      <section style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: '4.5rem 0', background: '#ffffff', overflow: 'hidden' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', position: 'relative' }}>
+      <section style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: 'clamp(2.5rem, 6vw, 4.5rem) 0', background: '#ffffff', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 2rem)', position: 'relative' }}>
           
           {/* Header Row with Title and Navigation buttons */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem' }}>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-10">
             <div>
               <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', display: 'block', marginBottom: '0.5rem' }}>Curated Selection</span>
-              <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', margin: 0 }}>Recommended Salons</h2>
+              <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', margin: 0 }}>Recommended Salons</h2>
             </div>
 
             {/* Right side controls: View All link + Slider Navigation buttons */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-              <Link to="/saloons" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#000000', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem', borderBottom: '1px solid #000000', paddingBottom: '3px', transition: 'all 0.2s' }}>
+            <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto">
+              <Link to="/saloons" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#000000', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', borderBottom: '1px solid #000000', paddingBottom: '3px', transition: 'all 0.2s', whiteSpace: 'nowrap', flexShrink: 0 }}>
                 View All <ArrowRight size={14} />
               </Link>
 
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0 }}>
                 <button
                   onClick={() => scrollContainer(recScrollRef, 'left')}
                   style={{
@@ -602,8 +603,8 @@ export default function HomePage() {
                 key={s._id} 
                 className="salon-card"
                 style={{
-                  flex: '0 0 340px',
-                  minWidth: '320px',
+                  flex: '0 0 clamp(280px, 80vw, 340px)',
+                  minWidth: 'clamp(260px, 75vw, 320px)',
                   maxWidth: '350px',
                   scrollSnapAlign: 'start',
                   display: 'flex',
@@ -736,16 +737,16 @@ export default function HomePage() {
         <div style={{ 
           maxWidth: '1400px', 
           margin: '0 auto', 
-          padding: '0 2rem'
+          padding: '0 clamp(1rem, 4vw, 2rem)'
         }}>
           <div style={{
             background: '#000000', 
-            borderRadius: '24px',
-            padding: '3.5rem 3rem',
+            borderRadius: '20px',
+            padding: 'clamp(1.75rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 3rem)',
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            gap: '3rem',
+            gap: 'clamp(1.5rem, 4vw, 3rem)',
             position: 'relative',
             overflow: 'hidden',
             flexWrap: 'wrap',
@@ -766,12 +767,15 @@ export default function HomePage() {
 
             {/* Left Photo Column */}
             <div style={{
-              flex: '1 1 280px',
+              flex: '1 1 200px',
+              maxWidth: '280px',
+              width: '100%',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               position: 'relative',
               zIndex: 2,
+              margin: '0 auto',
             }}>
               {/* Paper overlay image style */}
               <div style={{
@@ -814,7 +818,8 @@ export default function HomePage() {
 
             {/* Right Content Column */}
             <div style={{
-              flex: '2 1 600px',
+              flex: '2 1 280px',
+              minWidth: 0,
               display: 'flex',
               flexDirection: 'column',
               zIndex: 2,
@@ -1065,23 +1070,23 @@ export default function HomePage() {
       </section>
 
       {/* ─── TRENDING SALONS ─── */}
-      <section style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: '4.5rem 0', background: '#ffffff', overflow: 'hidden' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', position: 'relative' }}>
+      <section style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: 'clamp(2.5rem, 6vw, 4.5rem) 0', background: '#ffffff', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 2rem)', position: 'relative' }}>
           
           {/* Header Row with Title and Navigation buttons */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem' }}>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-10">
             <div>
               <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', display: 'block', marginBottom: '0.5rem' }}>Popular Picks</span>
-              <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', margin: 0 }}>Trending Salons</h2>
+              <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', margin: 0 }}>Trending Salons</h2>
             </div>
 
             {/* Right side controls: View All link + Slider Navigation buttons */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-              <Link to="/saloons" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#000000', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem', borderBottom: '1px solid #000000', paddingBottom: '3px', transition: 'all 0.2s' }}>
+            <div className="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto">
+              <Link to="/saloons" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#000000', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', borderBottom: '1px solid #000000', paddingBottom: '3px', transition: 'all 0.2s', whiteSpace: 'nowrap', flexShrink: 0 }}>
                 View All <ArrowRight size={14} />
               </Link>
 
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0 }}>
                 <button
                   onClick={() => scrollContainer(trendScrollRef, 'left')}
                   style={{
@@ -1148,8 +1153,8 @@ export default function HomePage() {
                 key={s._id} 
                 className="salon-card"
                 style={{
-                  flex: '0 0 340px',
-                  minWidth: '320px',
+                  flex: '0 0 clamp(280px, 80vw, 340px)',
+                  minWidth: 'clamp(260px, 75vw, 320px)',
                   maxWidth: '350px',
                   scrollSnapAlign: 'start',
                   display: 'flex',
@@ -1302,18 +1307,18 @@ export default function HomePage() {
       </section>
 
       {/* ─── TESTIMONIALS (Compact Layout) ─── */}
-      <section style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: '4.5rem 0', background: '#ffffff', overflow: 'hidden' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', position: 'relative' }}>
+      <section style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: 'clamp(2.5rem, 6vw, 4.5rem) 0', background: '#ffffff', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 2rem)', position: 'relative' }}>
 
           {/* Header Row with Title and Navigation buttons */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem' }}>
+          <div className="flex items-end justify-between gap-4 mb-6 sm:mb-10">
             <div>
               <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', display: 'block', marginBottom: '0.5rem' }}>Client Stories</span>
-              <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', margin: 0 }}>Reviews</h2>
+              <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', margin: 0 }}>Reviews</h2>
             </div>
 
             {/* Slider Navigation buttons */}
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0 }}>
               <button
                 onClick={() => scrollContainer(testimonialScrollRef, 'left')}
                 style={{
@@ -1375,16 +1380,17 @@ export default function HomePage() {
             {displayTestimonials.map((t, idx) => (
               <div
                 key={`${t.name}-${idx}`}
+                className="review-card-mobile"
                 style={{
-                  flex: '0 0 320px',
+                  flex: '0 0 clamp(270px, 80vw, 340px)',
                   scrollSnapAlign: 'start',
-                  padding: '2rem',
+                  padding: 'clamp(1.25rem, 4vw, 2rem)',
                   background: '#f5f5f5',
                   borderRadius: '16px',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '420px',
+                  minHeight: 'clamp(320px, 45vw, 400px)',
                   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
                 onMouseEnter={e => {
@@ -1471,16 +1477,16 @@ export default function HomePage() {
       <footer style={{ 
         background: '#000000', 
         color: '#ffffff', 
-        padding: '5rem 2rem 3rem 2rem', 
+        padding: 'clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem) clamp(2rem, 4vw, 3rem)', 
         borderTop: '1px solid rgba(255,255,255,0.06)' 
       }}>
         <div style={{ 
           maxWidth: '1400px', 
           margin: '0 auto', 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-          gap: '4rem',
-          marginBottom: '4rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
+          gap: 'clamp(2rem, 5vw, 4rem)',
+          marginBottom: '3rem',
           textAlign: 'left'
         }}>
           {/* Brand Info Column */}

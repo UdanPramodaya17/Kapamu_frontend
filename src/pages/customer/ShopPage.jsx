@@ -54,12 +54,12 @@ export default function ShopPage() {
 
       {/* ─── PAGE HERO ─── */}
       <section style={{
-        paddingTop: '100px',
-        paddingBottom: '3.5rem',
+        paddingTop: '90px',
+        paddingBottom: 'clamp(2rem, 5vw, 3.5rem)',
         borderBottom: '1px solid rgba(0,0,0,0.08)',
         background: 'linear-gradient(to bottom, rgba(0,0,0,0.005), transparent)',
       }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 2rem)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
             <div style={{ width: '24px', height: '1px', background: 'rgba(0,0,0,0.2)' }} />
             <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)' }}>
@@ -138,7 +138,7 @@ export default function ShopPage() {
       </section>
 
       {/* ─── PRODUCT GRID ─── */}
-      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: '2rem 2rem 8rem' }}>
+      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(1.5rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem) clamp(4rem, 8vw, 8rem)' }}>
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {[...Array(8)].map((_, i) => (
@@ -167,7 +167,7 @@ export default function ShopPage() {
                     style={{ display: 'block', textDecoration: 'none' }}
                   >
                     {/* Image area */}
-                    <div style={{ height: '350px', background: '#f8f8f8', position: 'relative', overflow: 'hidden' }}>
+                    <div className="product-img-area" style={{ height: 'clamp(180px, 40vw, 350px)', background: '#f8f8f8', position: 'relative', overflow: 'hidden' }}>
                       {product.images?.[0] ? (
                         <img
                           src={product.images[0]}

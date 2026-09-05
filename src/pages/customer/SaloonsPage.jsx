@@ -46,12 +46,12 @@ export default function SaloonsPage() {
 
       {/* ─── HERO HEADER ─── */}
       <section style={{
-        paddingTop: '100px',
-        paddingBottom: '3.5rem',
+        paddingTop: '90px',
+        paddingBottom: 'clamp(2rem, 5vw, 3.5rem)',
         borderBottom: '1px solid rgba(0,0,0,0.08)',
         background: 'linear-gradient(to bottom, rgba(0,0,0,0.005), transparent)',
       }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 2rem)', position: 'relative', zIndex: 1 }}>
 
           {/* Page label */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
@@ -125,7 +125,7 @@ export default function SaloonsPage() {
       </section>
 
       {/* ─── GRID ─── */}
-      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: '4rem 2rem 8rem' }}>
+      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem) clamp(4rem, 8vw, 8rem)' }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -213,8 +213,8 @@ export default function SaloonsPage() {
         ) : viewMode === 'map' ? (
           <SaloonsMap saloons={saloons} />
         ) : (
-          <div className="comic-panel-section" style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '24px', boxShadow: '0 10px 40px rgba(0,0,0,0.02)', padding: '2.5rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2.5rem' }}>
+          <div className="comic-panel-section" style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '24px', boxShadow: '0 10px 40px rgba(0,0,0,0.02)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(320px, 100%), 1fr))', gap: 'clamp(1.5rem, 4vw, 2.5rem)' }}>
               {saloons.map((saloon) => (
                 <Link
                   key={saloon._id}

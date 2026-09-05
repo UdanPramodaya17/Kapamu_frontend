@@ -805,3 +805,149 @@
     opacity: 0;
   }
 }
+
+/* ═══════════════════════════════════════
+   MOBILE RESPONSIVE — INDUSTRY STANDARD
+   Breakpoints: 480px | 640px | 768px | 1024px
+═══════════════════════════════════════ */
+
+/* Touch-action for horizontal scroll containers */
+.hide-scrollbar {
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Responsive Section Padding ── */
+.section-pad {
+  padding: 3rem 1rem;
+}
+@media (min-width: 640px) {
+  .section-pad { padding: 4rem 1.5rem; }
+}
+@media (min-width: 1024px) {
+  .section-pad { padding: 5rem 2rem; }
+}
+
+/* ── Comic Panel Section — Mobile Override ── */
+@media (max-width: 639px) {
+  .comic-panel-section {
+    padding: 1.75rem 1.25rem !important;
+    border-radius: 16px !important;
+  }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  .comic-panel-section {
+    padding: 2.5rem 2rem !important;
+  }
+}
+
+/* ── Salon & Product Cards — Mobile ── */
+@media (max-width: 479px) {
+  .salon-card, .product-card {
+    border-radius: 12px !important;
+  }
+  /* Ensure scroll cards don't overflow viewport */
+  .salon-card[style*="flex: 0 0"],
+  .salon-card[style*="flex:0 0"] {
+    flex: 0 0 calc(85vw) !important;
+    min-width: calc(85vw) !important;
+    max-width: calc(85vw) !important;
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  .salon-card[style*="flex: 0 0"],
+  .salon-card[style*="flex:0 0"] {
+    flex: 0 0 calc(70vw) !important;
+    min-width: calc(70vw) !important;
+    max-width: calc(70vw) !important;
+  }
+}
+
+/* ── Page Hero Header — Mobile Padding ── */
+@media (max-width: 639px) {
+  .page-hero-section {
+    padding-top: 90px !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+/* ── Ensure minimum 44x44px touch targets (Apple HIG) ── */
+button, [role="button"], a {
+  min-height: 0; /* Don't force — only use where needed */
+}
+
+/* ── Mobile: prevent horizontal overflow ── */
+@media (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+  }
+  /* Max width containers */
+  .max-w-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* ── Booking panel card — mobile ── */
+@media (max-width: 639px) {
+  .booking-panel-card {
+    padding: 1.25rem !important;
+  }
+}
+
+/* ── Product card image — mobile height ── */
+@media (max-width: 639px) {
+  .product-img-area {
+    height: 220px !important;
+  }
+}
+
+/* ── Review card — mobile ── */
+@media (max-width: 639px) {
+  .review-card-mobile {
+    min-height: auto !important;
+    padding: 1.5rem !important;
+  }
+}
+
+/* ── Nav mobile hamburger fix ── */
+@media (max-width: 767px) {
+  .navbar-inner-pad {
+    padding: 0 1rem;
+  }
+}
+
+/* ── Responsive Typography Helpers ── */
+.text-hero-mobile {
+  font-size: clamp(2rem, 8vw, 4rem);
+  line-height: 1.15;
+}
+.text-section-mobile {
+  font-size: clamp(1.75rem, 6vw, 3rem);
+  line-height: 1.2;
+}
+
+/* ── Mobile: stack flex rows ── */
+@media (max-width: 639px) {
+  .mobile-stack {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .mobile-full-width {
+    width: 100% !important;
+  }
+}
+
+/* ── Spinner size — mobile ── */
+@media (max-width: 639px) {
+  .spinner {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

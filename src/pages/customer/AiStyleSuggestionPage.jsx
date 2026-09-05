@@ -95,7 +95,7 @@ export default function AiStyleSuggestionPage() {
         pointerEvents: 'none',
       }} />
 
-      <main style={{ maxWidth: '1400px', margin: '0 auto', padding: '100px 2rem 6rem', position: 'relative', zIndex: 1 }}>
+      <main style={{ maxWidth: '1400px', margin: '0 auto', padding: 'clamp(90px, 12vw, 120px) clamp(1rem, 4vw, 2rem) clamp(3rem, 8vw, 6rem)', position: 'relative', zIndex: 1 }}>
         
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
@@ -127,7 +127,7 @@ export default function AiStyleSuggestionPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12">
           
           {/* Left Column: Upload */}
           <div className="col-span-12 lg:col-span-6 flex flex-col gap-6">
@@ -135,8 +135,10 @@ export default function AiStyleSuggestionPage() {
             {/* Gender Switch */}
             <div style={{
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              border: '1px solid rgba(0,0,0,0.08)', padding: '1.25rem',
+              border: '1px solid rgba(0,0,0,0.08)', padding: 'clamp(0.85rem, 3vw, 1.25rem)',
               background: 'rgba(0,0,0,0.005)',
+              flexWrap: 'wrap',
+              gap: '0.75rem',
             }}>
               <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.5)' }}>Select Profile Model:</span>
               <div style={{ display: 'flex', border: '1px solid rgba(0,0,0,0.15)', padding: '0.2rem', background: '#ffffff' }}>
@@ -183,7 +185,7 @@ export default function AiStyleSuggestionPage() {
             <div 
               style={{
                 border: '1px dashed rgba(0,0,0,0.18)',
-                padding: '3rem 2rem',
+                padding: 'clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem)',
                 textAlign: 'center',
                 background: 'rgba(0,0,0,0.003)',
                 transition: 'all 0.2s',
@@ -261,12 +263,12 @@ export default function AiStyleSuggestionPage() {
             {!result ? (
               <div style={{
                 border: '1px solid rgba(0,0,0,0.08)',
-                padding: '3rem 2rem',
+                padding: 'clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2rem)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                minHeight: '400px',
+                minHeight: 'clamp(250px, 50vw, 400px)',
                 textAlign: 'center',
                 background: 'rgba(0,0,0,0.003)',
               }}>
@@ -308,9 +310,9 @@ export default function AiStyleSuggestionPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
 
                 {/* Face shape + confidence card */}
-                <div style={{ border: '1px solid #000000', padding: '2rem', background: '#ffffff', position: 'relative' }}>
+                <div style={{ border: '1px solid #000000', padding: 'clamp(1.25rem, 4vw, 2rem)', background: '#ffffff', position: 'relative' }}>
                   <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.45)', display: 'block', marginBottom: '0.5rem' }}>Geometric Face Output</span>
-                  <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 900, fontSize: '2.5rem', color: '#000000', letterSpacing: '-0.02em', marginBottom: '1rem', textTransform: 'capitalize' }}>
+                  <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 900, fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', color: '#000000', letterSpacing: '-0.02em', marginBottom: '1rem', textTransform: 'capitalize' }}>
                     {result.face_shape}
                   </h2>
 

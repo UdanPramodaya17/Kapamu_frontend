@@ -656,7 +656,7 @@ export default function SaloonDetailPage() {
       }} />
 
       {/* Main container wrapper */}
-      <div style={{ position: 'relative', zIndex: 1, paddingTop: '80px', maxWidth: '1440px', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem', paddingBottom: '6rem' }}>
+      <div style={{ position: 'relative', zIndex: 1, paddingTop: '80px', maxWidth: '1440px', margin: '0 auto', paddingLeft: 'clamp(1rem, 4vw, 2rem)', paddingRight: 'clamp(1rem, 4vw, 2rem)', paddingBottom: 'clamp(3rem, 8vw, 6rem)' }}>
         
         {/* Breadcrumb / Back Link */}
         <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center' }}>
@@ -959,7 +959,7 @@ export default function SaloonDetailPage() {
         </div>
 
         {/* ─── TWO COLUMN DETAILS GRID ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
           
           {/* ─── LEFT COLUMN: INFO & SERVICES (8 COLS) ─── */}
           <div className="col-span-12 lg:col-span-8" style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
@@ -968,7 +968,7 @@ export default function SaloonDetailPage() {
             <div style={{
               background: '#ffffff',
               borderRadius: '16px',
-              padding: '2.5rem',
+              padding: 'clamp(1.5rem, 4vw, 2.5rem)',
               border: '1px solid rgba(0,0,0,0.04)',
               boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
               textAlign: 'left'
@@ -985,13 +985,13 @@ export default function SaloonDetailPage() {
             <div style={{
               background: '#ffffff',
               borderRadius: '16px',
-              padding: '2.5rem',
+              padding: 'clamp(1.5rem, 4vw, 2.5rem)',
               border: '1px solid rgba(0,0,0,0.04)',
               boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
               textAlign: 'left'
             }}>
-              <div style={{ borderBottom: '1px solid rgba(0,0,0,0.06)', paddingBottom: '1rem', marginBottom: '2rem' }}>
-                <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: '2rem', color: '#000000', margin: 0 }}>
+              <div style={{ borderBottom: '1px solid rgba(0,0,0,0.06)', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
+                <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(1.5rem, 4vw, 2rem)', color: '#000000', margin: 0 }}>
                   Services Menu
                 </h2>
                 <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: 'rgba(0,0,0,0.4)', fontSize: '0.85rem', marginTop: '0.25rem' }}>
@@ -1002,52 +1002,54 @@ export default function SaloonDetailPage() {
               {services.length === 0 ? (
                 <p style={{ fontStyle: 'italic', color: 'rgba(0,0,0,0.4)', fontSize: '0.9rem' }}>No services listed for this salon.</p>
               ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   {services.map(svc => {
                     const isSelected = selectedService?._id === svc._id;
                     return (
                       <div 
                         key={svc._id}
+                        className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6"
                         style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          padding: '1.5rem',
-                          borderRadius: '12px',
-                          border: isSelected ? '1px solid #000000' : '1px solid rgba(0,0,0,0.06)',
-                          background: isSelected ? 'rgba(0,0,0,0.01)' : '#ffffff',
+                          padding: 'clamp(1rem, 3.5vw, 1.5rem)',
+                          borderRadius: '14px',
+                          border: isSelected ? '1.5px solid #000000' : '1px solid rgba(0,0,0,0.07)',
+                          background: isSelected ? 'rgba(0,0,0,0.015)' : '#ffffff',
                           transition: 'all 0.2s ease',
-                          boxShadow: isSelected ? '0 8px 20px rgba(0,0,0,0.02)' : 'none',
+                          boxShadow: isSelected ? '0 8px 24px rgba(0,0,0,0.04)' : 'none',
                         }}
                       >
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', textAlign: 'left', flex: 1, paddingRight: '1.5rem' }}>
+                        {/* Service Details (Full width on mobile) */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', textAlign: 'left', flex: 1 }}>
                           <h3 style={{
                             fontFamily: "'Plus Jakarta Sans', sans-serif",
                             fontWeight: 700,
-                            fontSize: '1rem',
+                            fontSize: 'clamp(1rem, 3vw, 1.1rem)',
                             color: '#000000',
-                            margin: 0
+                            margin: 0,
+                            lineHeight: 1.25,
                           }}>{svc.name}</h3>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: 'rgba(0,0,0,0.45)', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                            <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: 'rgba(0,0,0,0.45)', fontFamily: "'Plus Jakarta Sans', sans-serif", flexWrap: 'wrap' }}>
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem', whiteSpace: 'nowrap' }}>
                               <Clock size={12} /> {svc.duration || 30} min
                             </span>
                             <span>·</span>
-                            <span style={{ textTransform: 'capitalize' }}>{svc.category || 'grooming'}</span>
+                            <span style={{ textTransform: 'capitalize', whiteSpace: 'nowrap' }}>{svc.category || 'grooming'}</span>
                           </div>
                           {svc.description && (
-                            <p style={{ fontSize: '0.8rem', color: 'rgba(0,0,0,0.4)', margin: '0.25rem 0 0 0', lineHeight: '1.4' }}>
+                            <p style={{ fontSize: '0.82rem', color: 'rgba(0,0,0,0.45)', margin: '0.25rem 0 0 0', lineHeight: '1.45' }}>
                               {svc.description}
                             </p>
                           )}
                         </div>
 
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                        {/* Price + Action Button (Full width row on mobile with border-t, inline on desktop) */}
+                        <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2.5 sm:pt-0 border-t sm:border-t-0 border-black/5 shrink-0">
                           <span style={{ 
                             fontFamily: "'Plus Jakarta Sans', sans-serif", 
                             fontWeight: 800, 
-                            fontSize: '1rem', 
-                            color: '#000000' 
+                            fontSize: 'clamp(1rem, 2.5vw, 1.1rem)', 
+                            color: '#000000',
+                            whiteSpace: 'nowrap',
                           }}>
                             LKR {formatPrice(svc.price)}
                           </span>
@@ -1069,14 +1071,16 @@ export default function SaloonDetailPage() {
                               fontWeight: 700,
                               fontSize: '0.8rem',
                               letterSpacing: '0.05em',
-                              padding: '0.6rem 1.25rem',
+                              padding: '0.55rem 1.35rem',
                               borderRadius: '30px',
                               border: '1px solid #000000',
                               background: isSelected ? '#000000' : '#ffffff',
                               color: isSelected ? '#ffffff' : '#000000',
                               cursor: 'pointer',
                               transition: 'all 0.2s ease',
-                              outline: 'none'
+                              outline: 'none',
+                              whiteSpace: 'nowrap',
+                              minHeight: '38px',
                             }}
                             onMouseEnter={e => {
                               if (!isSelected) {
@@ -1091,7 +1095,7 @@ export default function SaloonDetailPage() {
                               }
                             }}
                           >
-                            {isSelected ? 'Selected' : 'Add'}
+                            {isSelected ? '✓ Selected' : 'Add'}
                           </button>
                         </div>
                       </div>
@@ -1111,7 +1115,7 @@ export default function SaloonDetailPage() {
               <div style={{
                 background: '#ffffff',
                 borderRadius: '16px',
-                padding: '2.5rem',
+                padding: 'clamp(1.5rem, 4vw, 2.5rem)',
                 border: '1px solid rgba(0,0,0,0.04)',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
                 textAlign: 'left'
@@ -1119,7 +1123,7 @@ export default function SaloonDetailPage() {
                 <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: '1.75rem', color: '#000000', marginBottom: '1.5rem', marginTop: 0 }}>
                   Our Stylists
                 </h2>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1.5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(200px, 100%), 1fr))', gap: '1.25rem' }}>
                   {displayBarbers.map(b => (
                     <div 
                       key={b._id} 
@@ -1175,7 +1179,7 @@ export default function SaloonDetailPage() {
               <div style={{
                 background: '#ffffff',
                 borderRadius: '16px',
-                padding: '2.5rem',
+                padding: 'clamp(1.5rem, 4vw, 2.5rem)',
                 border: '1px solid rgba(0,0,0,0.04)',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
                 textAlign: 'left'
@@ -1293,7 +1297,7 @@ export default function SaloonDetailPage() {
             <div style={{
               background: '#ffffff',
               borderRadius: '16px',
-              padding: '2.5rem',
+              padding: 'clamp(1.5rem, 4vw, 2.5rem)',
               border: '1px solid rgba(0,0,0,0.04)',
               boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
               textAlign: 'left'
@@ -1361,7 +1365,7 @@ export default function SaloonDetailPage() {
             <div style={{
               background: '#ffffff',
               borderRadius: '16px',
-              padding: '2.5rem',
+              padding: 'clamp(1.5rem, 4vw, 2.5rem)',
               border: '1px solid rgba(0,0,0,0.04)',
               boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
               textAlign: 'left'
@@ -1444,7 +1448,7 @@ export default function SaloonDetailPage() {
             <div style={{
               background: '#ffffff',
               borderRadius: '16px',
-              padding: '2.5rem',
+              padding: 'clamp(1.5rem, 4vw, 2.5rem)',
               border: '1px solid rgba(0,0,0,0.04)',
               boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
               textAlign: 'left'
@@ -1459,7 +1463,7 @@ export default function SaloonDetailPage() {
               </div>
 
               {/* Review summary info */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginBottom: '2.5rem', background: '#fafafa', borderRadius: '12px', padding: '2rem', border: '1px solid rgba(0,0,0,0.04)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginBottom: '2.5rem', background: '#fafafa', borderRadius: '12px', padding: 'clamp(1.25rem, 3vw, 2rem)', border: '1px solid rgba(0,0,0,0.04)' }}>
                 <div style={{ textAlign: 'center' }} className="reviews-summary-score">
                   <h3 style={{ fontSize: '4rem', fontWeight: 900, color: '#000000', margin: 0, fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1 }}>
                     {saloon?.rating > 0 ? saloon.rating.toFixed(1) : '0.0'}
