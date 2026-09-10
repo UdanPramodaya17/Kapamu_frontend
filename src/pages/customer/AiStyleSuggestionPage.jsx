@@ -12,6 +12,7 @@ export default function AiStyleSuggestionPage() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const fileInputRef = useRef(null);
 
   const handleDragOver = (e) => {
@@ -31,10 +32,12 @@ export default function AiStyleSuggestionPage() {
 
   const handleFile = (file) => {
     if (!file.type.startsWith('image/')) {
-      toast.error('Please select an image file');
+      toast.error('Please select a valid image file');
+      setErrorMessage('Please upload a valid image format (JPEG, PNG, WebP).');
       return;
     }
     setSelectedFile(file);
+    setErrorMessage(null);
     const reader = new FileReader();
     reader.onload = () => {
       setPreviewUrl(reader.result);
@@ -48,6 +51,7 @@ export default function AiStyleSuggestionPage() {
 
     setIsAnalyzing(true);
     setResult(null);
+    setErrorMessage(null);
 
     try {
       const formData = new FormData();
@@ -63,21 +67,28 @@ export default function AiStyleSuggestionPage() {
       const data = res.data;
 
       if (data.error) {
-        toast.error(data.message || 'Analysis failed. Please try a clearer photo.');
+        const msg = data.message || 'No human face detected. Please upload a clear photo of a real human face.';
+        toast.error(msg);
+        setErrorMessage(msg);
         setIsAnalyzing(false);
         return;
       }
 
       if (data.is_confident === false) {
-        toast.error(data.message || "Photo isn't clear enough — please retake with a front-facing, well-lit photo.");
+        const msg = data.message || 'Photo is not clear enough for accurate human facial analysis. Please retake with a clear, front-facing human face.';
+        toast.error(msg);
+        setErrorMessage(msg);
         setIsAnalyzing(false);
         return;
       }
 
       setResult(data);
+      setErrorMessage(null);
       toast.success(`Face shape detected: ${data.face_shape?.toUpperCase()} ⚡`);
     } catch (err) {
-      toast.error(err.response?.data?.message || err.message || 'AI Analysis failed');
+      const msg = err.response?.data?.message || 'No human face detected. Please upload a clear photo of a real human face.';
+      toast.error(msg);
+      setErrorMessage(msg);
       console.error('AI fetch error:', err);
     } finally {
       setIsAnalyzing(false);
@@ -248,15 +259,46 @@ export default function AiStyleSuggestionPage() {
               <div style={{ display: 'flex', gap: '0.75rem' }}>
                 <AlertCircle size={16} color="rgba(0,0,0,0.4)" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <div style={{ fontSize: '0.75rem', color: 'rgba(0,0,0,0.5)', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                  <strong style={{ color: '#000000', display: 'block', marginBottom: '0.25rem', textTransform: 'uppercase', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '0.7rem', letterSpacing: '0.05em', fontWeight: 800 }}>Portrait Rules</strong>
+                  <strong style={{ color: '#000000', display: 'block', marginBottom: '0.25rem', textTransform: 'uppercase', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '0.7rem', letterSpacing: '0.05em', fontWeight: 800 }}>Human Portrait Rules</strong>
                   <ul style={{ listStyleType: 'disc', paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                    <li><strong>Real Human Faces Only:</strong> Non-human images (animals, objects, landscapes) will be rejected.</li>
                     <li>Position eyes horizontally level with the camera lens.</li>
-                    <li>Provide flat even lighting across the forehead and nose.</li>
-                    <li>Avoid high angles or tilting of your face profile.</li>
+                    <li>Provide flat, even lighting across the full face without harsh shadows.</li>
                   </ul>
                 </div>
               </div>
             </div>
+
+            {/* Error Message Box */}
+            {errorMessage && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '0.85rem',
+                background: '#fff5f5',
+                border: '1px solid #feb2b2',
+                padding: '1rem 1.25rem',
+              }}>
+                <AlertCircle size={18} color="#e53e3e" style={{ flexShrink: 0, marginTop: '2px' }} />
+                <div>
+                  <strong style={{
+                    display: 'block',
+                    fontSize: '0.75rem',
+                    fontWeight: 800,
+                    color: '#c53030',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '0.2rem',
+                    fontFamily: "'Plus Jakarta Sans', sans-serif"
+                  }}>
+                    Human Face Required
+                  </strong>
+                  <p style={{ margin: 0, fontSize: '0.8rem', color: '#9b2c2c', lineHeight: 1.5, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    {errorMessage}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Right Column: AI Analysis Results */}
