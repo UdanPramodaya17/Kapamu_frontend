@@ -57,6 +57,7 @@ export default function AiStyleSuggestionPage() {
 
       const res = await api.post('/ai/predict', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
+        timeout: 90000, // 90s — AI model inference can be slow on first run
       });
 
       const data = res.data;
