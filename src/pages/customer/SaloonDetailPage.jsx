@@ -149,13 +149,17 @@ export default function SaloonDetailPage() {
         date: selectedDate,
         startTime: selectedSlot.startTime,
       });
-      const assignedBarberName = res.data.data?.appointment?.barber?.user?.name;
+      const newAppointment = res.data.data?.appointment;
+      const assignedBarberName = newAppointment?.barber?.user?.name;
       toast.success(
         assignedBarberName
           ? `Booked with ${assignedBarberName}! 🎉`
           : 'Appointment booked successfully! 🎉'
       );
-      navigate('/customer/bookings');
+      // Pass appointmentId so MyBookingsPage can scroll to & highlight it
+      const appointmentId = newAppointment?._id;
+      navigate(`/customer/bookings${appointmentId ? `?appointmentId=${appointmentId}` : ''}`);
+
     } catch (err) {
       toast.error(err.response?.data?.message || 'Booking failed. Please try again.');
     } finally {

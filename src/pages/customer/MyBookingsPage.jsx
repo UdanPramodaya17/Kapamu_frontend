@@ -64,9 +64,23 @@ export default function MyBookingsPage() {
       });
   };
 
+  // When navigated from a new booking, force 'all' tab so it's visible
   useEffect(() => {
-    fetchBookings(activeTab);
+    if (appointmentIdParam && activeTab !== 'all') {
+      setActiveTab('all');
+    } else {
+      fetchBookings(activeTab);
+    }
   }, [activeTab]);
+
+  // After appointments load, scroll to & flash the target appointment
+  useEffect(() => {
+    if (!appointmentIdParam || loading) return;
+    const el = document.getElementById(`appointment-${appointmentIdParam}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [appointments, loading, appointmentIdParam]);
 
   const handleCancel = async (id) => {
     if (!window.confirm('Are you sure you want to cancel this appointment?')) return;
@@ -192,15 +206,27 @@ export default function MyBookingsPage() {
                   key={apt._id} 
                   id={`appointment-${apt._id}`}
                   style={{ 
-                    border: isTarget ? '2px solid #000000' : '1px solid rgba(0,0,0,0.08)', 
+                    border: isTarget ? '2px solid #16a34a' : '1px solid rgba(0,0,0,0.08)', 
                     padding: '1.75rem', 
-                    background: isTarget ? '#fafafa' : '#ffffff', 
+                    background: isTarget ? '#f0fdf4' : '#ffffff', 
                     borderRadius: '16px',
-                    boxShadow: isTarget ? '0 8px 30px rgba(0,0,0,0.08)' : '0 4px 20px rgba(0,0,0,0.02)',
-                    transition: 'all 0.2s',
+                    boxShadow: isTarget ? '0 0 0 4px rgba(22,163,74,0.1), 0 8px 30px rgba(22,163,74,0.12)' : '0 4px 20px rgba(0,0,0,0.02)',
+                    transition: 'all 0.3s',
+                    position: 'relative',
                   }}
                   className="hover:shadow-md hover:-translate-y-0.5 transition-all"
                 >
+                {isTarget && (
+                  <span style={{
+                    position: 'absolute', top: '-12px', left: '1.5rem',
+                    background: '#16a34a', color: '#fff',
+                    fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.12em',
+                    textTransform: 'uppercase', padding: '0.2rem 0.75rem',
+                    borderRadius: '50px', fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  }}>
+                    ✓ Just Booked
+                  </span>
+                )}
                 <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'center' }}>
                   
                   <div style={{ display: 'flex', gap: '1.25rem', flex: 1, minWidth: '280px' }}>
