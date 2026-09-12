@@ -82,6 +82,14 @@ export default function AiStyleSuggestionPage() {
         return;
       }
 
+      if (!data.face_shape) {
+        const msg = data.message || 'Human facial features could not be identified. Please upload a well-lit, front-facing human portrait photo.';
+        toast.error(msg);
+        setErrorMessage(msg);
+        setIsAnalyzing(false);
+        return;
+      }
+
       setResult(data);
       setErrorMessage(null);
       toast.success(`Face shape detected: ${data.face_shape?.toUpperCase()} ⚡`);
