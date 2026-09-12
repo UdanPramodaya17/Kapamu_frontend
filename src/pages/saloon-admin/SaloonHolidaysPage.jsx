@@ -27,11 +27,13 @@ export default function SaloonHolidaysPage() {
   const handleAddHoliday = async (e) => {
     e.preventDefault();
     if (!date) return toast.error('Please select a date.');
+    if (!saloon?._id) return toast.error('Saloon not loaded.');
     
     setIsSubmitting(true);
     try {
-      const res = await saloonAPI.addHoliday({ date, reason });
-      setSaloon(res.data.data.saloon);
+      const res = await saloonAPI.addHoliday(saloon._id, { date, reason });
+      const updatedHolidays = res.data.data?.holidays || res.data.data?.saloon?.holidays || [];
+      setSaloon((prev) => ({ ...prev, holidays: updatedHolidays }));
       toast.success('Holiday added successfully!');
       setDate('');
       setReason('');
@@ -44,10 +46,12 @@ export default function SaloonHolidaysPage() {
 
   const handleDeleteHoliday = async (holidayId) => {
     if (!window.confirm('Are you sure you want to remove this holiday?')) return;
+    if (!saloon?._id) return;
     
     try {
-      const res = await saloonAPI.removeHoliday(holidayId);
-      setSaloon(res.data.data.saloon);
+      const res = await saloonAPI.removeHoliday(saloon._id, holidayId);
+      const updatedHolidays = res.data.data?.holidays || res.data.data?.saloon?.holidays || [];
+      setSaloon((prev) => ({ ...prev, holidays: updatedHolidays }));
       toast.success('Holiday removed.');
     } catch (err) {
       toast.error('Failed to remove holiday.');
