@@ -14,10 +14,29 @@ self.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-  // Network-first strategy for everything so new builds load fresh assets immediately
-  if (e.request.method === 'GET' && !e.request.url.includes('/api/')) {
-    e.respondWith(
-      fetch(e.request).catch(() => caches.match(e.request))
-    );
+  // Only intercept GET requests and bypass all API endpoints and localhost dev websockets
+  if (
+    e.request.method !== 'GET' ||
+    e.request.url.includes('/api/') ||
+    e.request.url.includes('chrome-extension') ||
+    e.request.url.includes('/@vite/') ||
+    e.request.url.includes('/@react-refresh')
+  ) {
+    return;
   }
+
+  e.respondWith(
+    fetch(e.request).catch(async () => {
+      const cached = await caches.match(e.request);
+      if (cached) return cached;
+      if (e.request.mode === 'navigate') {
+        const indexMatch = await caches.match('/index.html');
+        if (indexMatch) return indexMatch;
+      }
+      return new Response('Network error occurred', {
+        status: 408,
+        headers: { 'Content-Type': 'text/plain' },
+      });
+    })
+  );
 });
